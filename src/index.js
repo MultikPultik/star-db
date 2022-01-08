@@ -1,17 +1,61 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+class SwapiService {
+  _mainUrl = "https://swapi.dev/api";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  async getResurce(url) {
+    const resp = await fetch(`${this._mainUrl+url}`);
+    if (!resp.ok) {
+      throw new Error(`Ошибка чтения ресурса ${this._mainUrl}. ${resp.status}`)
+    }
+    const body = await resp.json();
+    return body;
+  }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  async getAllPeople() {
+    const resp = await this.getResurce(`/people/`);
+    return resp.results
+  }
+
+  getPerson(id) {
+    return this.getResurce(`/people/${id}`);
+  }
+
+  async getAllPlanets() {
+    const resp = await this.getResurce(`/planets/`);
+    return resp.results
+  }
+
+  getPlanet(id) {
+    return this.getResurce(`/planets/${id}`);
+  }
+
+  async getAllStarShips() {
+    const resp = await this.getResurce(`/starships/`);
+    return resp.results
+  }
+
+  getStarship(id) {
+    return this.getResurce(`/starships/${id}`);
+  }
+}
+
+const swapiService = new SwapiService();
+
+// swapiService.getAllPeople().then((data) => {
+//   data.forEach((el) => console.log(el));
+// });
+
+swapiService.getPerson(1).then((data) => {
+  console.log(data);
+});
+
+// getData("https://swapi.dev/api/people/").then((body) => {
+//   console.log(body);
+// });
+
+// fetch("https://swapi.dev/api/people/")
+//   .then((res) => res.json())
+//   .then((body) => {
+//     body.results.forEach((element) => {
+//       console.log(element.name);
+//     });
+//   });
