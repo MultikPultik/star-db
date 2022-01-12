@@ -1,0 +1,9 @@
+.card-person-details{
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.card-person-details img{
+  width: 150px;
+  border-radius: 10px;
+}

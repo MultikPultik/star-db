@@ -1,0 +1,14 @@
+.planet-descr{
+  /* margin: 20px 10px 10px 25px; */
+  margin-left: -30px;
+}
+
+.card-planet{
+  padding: 20px;
+
+}
+
+.planet-img{
+  border-radius: 15px;
+  width: 200px;
+}
