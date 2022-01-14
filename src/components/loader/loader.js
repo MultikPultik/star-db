@@ -4,15 +4,17 @@ import "./loader.css";
 
 const Loader = () => {
   return (
-    <div className="loadingio-spinner-double-ring-cu24yrqzdjp">
-      <div className="ldio-ul6axee7omh">
-        <div></div>
-        <div></div>
-        <div>
+    <div className="card-body text-center">
+      <div className="loadingio-spinner-double-ring-cu24yrqzdjp">
+        <div className="ldio-ul6axee7omh">
           <div></div>
-        </div>
-        <div>
           <div></div>
+          <div>
+            <div></div>
+          </div>
+          <div>
+            <div></div>
+          </div>
         </div>
       </div>
     </div>

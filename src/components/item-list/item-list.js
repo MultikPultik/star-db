@@ -32,9 +32,6 @@ export default class ItemList extends Component {
           <div className="col-12">
             <ul className="item-list list-group">
               {list}
-              {/* <li className="list-group-item">Item1</li>
-              <li className="list-group-item">Item2</li>
-              <li className="list-group-item">Item3</li> */}
             </ul>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import react from "react";
 import SwapiService from "../../services/swapi-services";
 import Loader from "../loader/loader";
+import ErrorContent from "../error-content/error-content";
 
 import "./random-planet.css";
 
@@ -15,22 +16,28 @@ export default class RandomPlanet extends react.Component {
   state = {
     planet: {},
     loading: true,
+    error: false
   };
 
   updatePlanet() {
     const id = Math.floor(Math.random() * 17) + 2;
     this.swapiservices.getPlanet(id).then((planet) => {
       this.setState({ planet, loading: false });
-    });
+    })
+    .catch(()=>{
+      this.setState({ error: true, loading: false });
+    })
   } 
 
   render() {
-    const { planet, loading } = this.state;
+    const { planet, loading, error } = this.state;
     const loader = loading ? <Loader /> : null;
-    const content = !loading ? <PlanetView planet={planet} /> : null;
+    const err = error ? <ErrorContent/> : null
+    const content = (!loading && !error) ? <PlanetView planet={planet} /> : null;
 
     return (
       <div className="card card-planet">
+        {err}
         {loader}
         {content}
       </div>
