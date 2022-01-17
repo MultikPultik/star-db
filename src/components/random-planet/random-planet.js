@@ -16,24 +16,32 @@ export default class RandomPlanet extends react.Component {
   state = {
     planet: {},
     loading: true,
-    error: false
+    error: false,
   };
+
+  componentDidMount() {
+    this.interval = setInterval(() => {
+      this.updatePlanet();
+    }, 5000);
+  }
 
   updatePlanet() {
     const id = Math.floor(Math.random() * 17) + 2;
-    this.swapiservices.getPlanet(id).then((planet) => {
-      this.setState({ planet, loading: false });
-    })
-    .catch(()=>{
-      this.setState({ error: true, loading: false });
-    })
-  } 
+    this.swapiservices
+      .getPlanet(id)
+      .then((planet) => {
+        this.setState({ planet, loading: false });
+      })
+      .catch(() => {
+        this.setState({ error: true, loading: false });
+      });
+  }
 
   render() {
     const { planet, loading, error } = this.state;
     const loader = loading ? <Loader /> : null;
-    const err = error ? <ErrorContent/> : null
-    const content = (!loading && !error) ? <PlanetView planet={planet} /> : null;
+    const err = error ? <ErrorContent /> : null;
+    const content = !loading && !error ? <PlanetView planet={planet} /> : null;
 
     return (
       <div className="card card-planet">
