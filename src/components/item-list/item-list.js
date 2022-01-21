@@ -1,54 +1,50 @@
-import react, { Component } from "react";
+import React, { Component } from "react";
 import SwapiService from "../../services/swapi-services";
+import Loader from "../loader/loader";
 
 import "./item-list.css";
 
 export default class ItemList extends Component {
   swapiservices = new SwapiService();
 
-  constructor() {
-    super();
-    this.updatePeople();
-  }
-
   state = {
-    peopleList: [],
+    peopleList: null,
     loading: true,
   };
 
-  updatePeople() {
+  componentDidMount() {
     this.swapiservices.getAllPeople().then((el) => {
       this.setState({ peopleList: el, loading: false });
     });
   }
 
   renderItem(arr) {
-    return arr.map((el) => {
+    return arr.map(({ name, id }) => {
       return (
         <li
-          key={el.name}
+          key={id}
           className="list-group-item"
-          onClick={(e) => console.log(e.target)}
+          onClick={() => this.props.onPeopleId(id)}
         >
-          {el.name}
+          {name}
         </li>
       );
     });
   }
 
   render() {
-    const {peopleList} = this.state;
+    const { peopleList } = this.state;
+
+    if (!peopleList) {
+      return <Loader />;
+    }
 
     const list = this.renderItem(peopleList);
 
     return (
-      <div className="card item-list">
-        <div className="row">
-          <div className="col-12">
-            <ul className="item-list list-group">{list}</ul>
-          </div>
+        <div className="item-list">
+            <ul className=" list-group">{list}</ul>
         </div>
-      </div>
     );
   }
 }

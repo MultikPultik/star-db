@@ -7,7 +7,10 @@ const ErrorContent = () => {
   return (
     <div className="card-body text-center">
       <img style={{ width: "200px" }} src={err}></img>
-      <h4 style={{color: 'tomato'}}>Что то пошло не так</h4>
+      <h4 style={{ color: "tomato" }}>
+        Что то пошло не так. Попробуйте перезагрузить страницу или обратитесь к
+        администратору
+      </h4>
     </div>
   );
 };

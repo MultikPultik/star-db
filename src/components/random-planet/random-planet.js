@@ -1,11 +1,11 @@
-import react from "react";
+import React, {Component} from "react";
 import SwapiService from "../../services/swapi-services";
 import Loader from "../loader/loader";
 import ErrorContent from "../error-content/error-content";
 
 import "./random-planet.css";
 
-export default class RandomPlanet extends react.Component {
+export default class RandomPlanet extends Component {
   constructor() {
     super();
     this.updatePlanet();
@@ -44,7 +44,7 @@ export default class RandomPlanet extends react.Component {
     const content = !loading && !error ? <PlanetView planet={planet} /> : null;
 
     return (
-      <div className="card card-planet">
+      <div className="card border-secondary card-planet">
         {err}
         {loader}
         {content}
@@ -57,18 +57,18 @@ const PlanetView = ({ planet }) => {
   const { name, rotationPeriod, diameter, population, id } = planet;
   return (
     <>
-      <div className="row">
-        <div className="col-3">
+      <div className="row row-cols-auto">
+        <div className="col">
           <img
             src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
             className="planet-img"
             alt="img-planet"
           ></img>
         </div>
-        <div className="col-5">
+        <div className="col">
           <div className="card-body">
-            <h5 className="card-title">Planet {name}</h5>
-            <ul className="planet-descr list-group-flush">
+            <h5 className="title">Planet {name}</h5>
+            <ul className="planet-descr-list list-group-flush">
               <li className="list-group-item">Population {population} </li>
               <li className="list-group-item">
                 Rotation Period {rotationPeriod}
