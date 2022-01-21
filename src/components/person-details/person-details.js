@@ -52,10 +52,10 @@ export default class PersonDetails extends Component {
                 <li className="list-group-item">Mass: {mass}</li>
                 <li className="list-group-item">Gender: {gender}</li>
               </ul>
+              <ButtonFault label="Create Error" />
             </div>
           </div>
         </div>
-        <ButtonFault label='Create Error'/>
       </div>
     );
   }
