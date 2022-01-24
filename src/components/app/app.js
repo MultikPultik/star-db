@@ -4,14 +4,16 @@ import RandomPlanet from "../random-planet/random-planet";
 import ButtonFault from "../button-fault/button-fault";
 import ErrorContent from "../error-content/error-content";
 import PagePeople from "../page-people/page-people";
-import ItemList from "../item-list/item-list";
-import PersonDetails from "../person-details/person-details";
+// import ItemList from "../item-list/item-list";
+// import PersonDetails from "../person-details/person-details";
 
 import "./app.css";
-import SwapiService from "../../services/swapi-services";
+import PagePlanets from "../page-planets/page-planets";
+import PageStarships from "../page-starships/page-starships";
+
 
 export default class App extends Component {
-  swapiservices = new SwapiService();
+  
   state = {
     hasError: false,
   };
@@ -33,20 +35,10 @@ export default class App extends Component {
       <div className="container-sm app-star-db">
         <Header />
         <RandomPlanet />
-        <ButtonFault label="Create Error" />
-        {/* <PagePeople /> */}
+        <PagePeople />
+        {/* <PagePlanets/> */}
+        {/* <PageStarships/> */}
 
-        <div className="row align-items-start">
-          <div className="col-6">
-            <ItemList
-              onSelectedItem={this.onItemListSelected}
-              getData={this.swapiservices.getAllPeople}
-              renderItem={({ name, gender }) => `${name} (${gender})`}/>
-          </div>
-          <div className="col-6">
-            <PersonDetails personIdSelected={this.state.personIdSelected} />
-          </div>
-        </div>
       </div>
     );
   }
