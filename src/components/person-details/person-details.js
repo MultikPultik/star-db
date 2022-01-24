@@ -41,7 +41,7 @@ export default class PersonDetails extends Component {
         <div className="row row-cols-auto">
           <div className="col">
             <img
-              src={`https://starwars-visualguide.com/assets/img/species/${id}.jpg`}
+              src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
             />
           </div>
           <div className="col">
