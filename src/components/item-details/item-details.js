@@ -4,6 +4,15 @@ import ButtonFault from "../button-fault/button-fault";
 
 import "./item-details.css";
 
+const Record = ({ item, field, label }) => {
+  return (
+    <li className="list-group-item">
+      {label}: {item[field]}
+    </li>
+  );
+};
+
+export { Record };
 export default class ItemDetails extends Component {
   swapiservices = new SwapiService();
 
@@ -29,16 +38,16 @@ export default class ItemDetails extends Component {
     getData(itemId).then((item) => {
       this.setState({
         item,
-        image: getImageUrl(itemId)
+        image: getImageUrl(itemId),
       });
     });
   }
 
   render() {
-    const {item, image} = this.state;
-    
-    if(!item){
-      return null
+    const { item, image } = this.state;
+
+    if (!item) {
+      return null;
     }
 
     const { name, birthYear, mass, gender } = item;
@@ -47,17 +56,18 @@ export default class ItemDetails extends Component {
       <div className="card border-secondary card-person-details">
         <div className="row row-cols-auto">
           <div className="col">
-            <img
-              src={image}
-            />
+            <img src={image} />
           </div>
           <div className="col">
             <div className="card-body">
               <h5 className="card-title">{name}</h5>
               <ul className="person-details list-group-flush">
-                <li className="list-group-item">Birth Year: {birthYear}</li>
+                {React.Children.map(this.props.children, (child) => {
+                  return (React.cloneElement(child,{item}));
+                })}
+                {/* <li className="list-group-item">Birth Year: {birthYear}</li>
                 <li className="list-group-item">Mass: {mass}</li>
-                <li className="list-group-item">Gender: {gender}</li>
+                <li className="list-group-item">Gender: {gender}</li> */}
               </ul>
               <ButtonFault label="Create Error" />
             </div>

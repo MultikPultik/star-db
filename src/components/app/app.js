@@ -5,7 +5,7 @@ import PagePeople from "../page-people/page-people";
 import ItemList from "../item-list/item-list";
 import PersonDetails from "../person-details/person-details";
 import SwapiService from "../../services/swapi-services";
-import ItemDetails from "../item-details/item-details";
+import ItemDetails, { Record } from "../item-details/item-details";
 
 import "./app.css";
 import Row from "../row/row";
@@ -36,7 +36,10 @@ export default class App extends Component {
         itemId={8}
         getData={this.swapiservices.getPerson}
         getImageUrl={this.swapiservices.getPersonImageUrl}
-      />
+      >
+        <Record field="gender" label="Gender" />
+        <Record field="eyeColor" label="Eye Color" />
+      </ItemDetails>
     );
 
     const starshipDetails = (
@@ -44,7 +47,11 @@ export default class App extends Component {
         itemId={5}
         getData={this.swapiservices.getStarship}
         getImageUrl={this.swapiservices.getStarShipImageUrl}
-      />
+      >
+        <Record field="model" label="Model" />
+        <Record field="length" label="Length" />
+        <Record field="costInCredits" label="Cost" />
+      </ItemDetails>
     );
 
     return (
